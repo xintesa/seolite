@@ -4,6 +4,10 @@ SeoLite.analyze = function(e) {
 	e && e.preventDefault();
 	var url = e.currentTarget.attributes['href'].value;
 
+	if (typeof e.currentTarget.attributes['data-id'] == 'undefined') {
+		return alert('Please save/apply your data first');
+	}
+
 	var $keywords = $('#SeoLiteMetaKeywordsValue');
 	var $description = $('#SeoLiteMetaDescriptionValue');
 

@@ -1,6 +1,9 @@
 <?php
 $this->Html->script('SeoLite.admin', array('inline' => false));
 $field = isset($field) ? $field : 'body';
+$id = !empty($this->data[$this->Form->defaultModel]['id']) ?
+	$this->data[$this->Form->defaultModel]['id'] :
+	null;
 ?>
 <div class="row-fluid">
 	<div class="span12">
@@ -13,11 +16,12 @@ $field = isset($field) ? $field : 'body';
 				'action' => 'index',
 				$this->Form->plugin,
 				$this->Form->defaultModel,
-				$this->data[$this->Form->defaultModel]['id'],
+				$id,
 				$field,
 				'ext' => 'json',
 			), array(
 				'data-toggle' => 'seo-lite-analyze',
+				'data-id' => $id,
 				'icon' => 'cogs',
 				'iconSize' => 'small',
 				'tooltip' => array(

@@ -18,12 +18,21 @@ $queryString = env('QUERY_STRING');
 if (strpos($queryString, 'admin') === false) {
 	return;
 }
+
+/*
+ * stuff for /admin routes only
+ */
+
 Croogo::hookBehavior('Node', 'SeoLite.SeoCustomFields', array(
 	'priority' => 1,
 ));
 
-Croogo::hookAdminTab('Nodes/admin_edit', 'Meta', 'SeoLite.admin/meta', array(
+$title = 'SeoLite';
+$element = 'SeoLite.admin/meta';
+$options = array(
 	'elementData' => array(
 		'field' => 'body',
 	),
-));
+);
+Croogo::hookAdminTab('Nodes/admin_add', $title, $element, $options);
+Croogo::hookAdminTab('Nodes/admin_edit', $title, $element, $options);
