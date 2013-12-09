@@ -32,14 +32,7 @@ $field = isset($field) ? $field : 'body';
 </div>
 <?php
 
-$keys = array(
-	'meta_keywords' => array(
-		'label' => __d('seolite', 'Keywords'),
-	),
-	'meta_description' => array(
-		'label' => __d('seolite', 'Description'),
-	),
-);
+$keys = Configure::read('SeoLite.keys');
 $fields = array(
 	'id' => array('type' => 'hidden'),
 	'key' => array('type' => 'hidden'),

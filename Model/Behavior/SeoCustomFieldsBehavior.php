@@ -16,7 +16,8 @@ class SeoCustomFieldsBehavior extends ModelBehavior {
 		if (!$primary) {
 			return $results;
 		}
-		$keys = array('meta_keywords', 'meta_description');
+		$keySettings = Configure::read('SeoLite.keys');
+		$keys = array_keys($keySettings);
 		foreach ($results as &$result) {
 			if (!isset($result['Meta'])) {
 				continue;
