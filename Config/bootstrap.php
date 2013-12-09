@@ -8,4 +8,8 @@ Croogo::hookBehavior('Node', 'SeoLite.SeoCustomFields', array(
 	'priority' => 1,
 ));
 
-Croogo::hookAdminTab('Nodes/admin_edit', 'Meta', 'SeoLite.admin/meta');
+Croogo::hookAdminTab('Nodes/admin_edit', 'Meta', 'SeoLite.admin/meta', array(
+	'elementData' => array(
+		'field' => 'body',
+	),
+));
