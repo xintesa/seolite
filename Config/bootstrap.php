@@ -7,7 +7,12 @@ Configure::write('SeoLite.keys', array(
 	'meta_description' => array(
 		'label' => __d('seolite', 'Description'),
 	),
+	'rel_canonical' => array(
+		'label' => __d('seolite', 'Canonical Page'),
+	),
 ));
+
+Croogo::hookHelper('Nodes', 'SeoLite.SeoLite');
 
 $queryString = env('QUERY_STRING');
 if (strpos($queryString, 'admin') === false) {
