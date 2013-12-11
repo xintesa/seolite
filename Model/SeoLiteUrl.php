@@ -15,6 +15,7 @@ class SeoLiteUrl extends SeoLiteAppModel {
 		'Croogo.Trackable',
 		'Meta.Meta',
 		'SeoLite.SeoCustomFields',
+		'Search.Searchable',
 	);
 
 	public $hasMany = array(
@@ -24,6 +25,12 @@ class SeoLiteUrl extends SeoLiteAppModel {
 			'dependent' => true,
 			'conditions' => array('Meta.model' => 'SeoLiteUrl'),
 		),
+	);
+
+	public $filterArgs = array(
+		'id' => array('type' => 'value'),
+		'url' => array('type' => 'like'),
+		'description' => array('type' => 'like'),
 	);
 
 /**

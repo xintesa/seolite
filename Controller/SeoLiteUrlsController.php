@@ -14,7 +14,19 @@ class SeoLiteUrlsController extends SeoLiteAppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array(
+		'Search.Prg' => array(
+			'presetForm' => array(
+				'paramType' => 'querystring',
+			),
+			'commonProcess' => array(
+				'paramType' => 'querystring',
+			),
+		),
+		'Paginator' => array(
+			'paramType' => 'querystring',
+		),
+	);
 
 /**
  * admin_index method
@@ -23,7 +35,14 @@ class SeoLiteUrlsController extends SeoLiteAppController {
  */
 	public function admin_index() {
 		$this->SeoLiteUrl->recursive = 0;
-		$this->set('seoLiteUrls', $this->paginate());
+		$this->Prg->commonProcess();
+		$searchFields = array(
+			'id',
+			'url' => array('type' => 'text'),
+			'description' => array('type' => 'text'),
+		);
+		$this->set(compact('searchFields'));
+		$this->set('seoLiteUrls', $this->paginate($this->SeoLiteUrl->parseCriteria($this->request->query)));
 	}
 
 /**
