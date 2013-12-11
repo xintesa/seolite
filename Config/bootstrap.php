@@ -1,5 +1,11 @@
 <?php
 
+$cacheConfig = array_merge(
+	Configure::read('Cache.defaultConfig'),
+	array('groups' => array('seo_lite'))
+);
+CroogoCache::config('seo_lite', $cacheConfig);
+
 Configure::write('SeoLite.keys', array(
 	'meta_keywords' => array(
 		'label' => __d('seolite', 'Keywords'),
@@ -12,7 +18,7 @@ Configure::write('SeoLite.keys', array(
 	),
 ));
 
-Croogo::hookHelper('Nodes', 'SeoLite.SeoLite');
+Croogo::hookHelper('*', 'SeoLite.SeoLite');
 
 $queryString = env('QUERY_STRING');
 if (strpos($queryString, 'admin') === false) {
@@ -36,3 +42,22 @@ $options = array(
 );
 Croogo::hookAdminTab('Nodes/admin_add', $title, $element, $options);
 Croogo::hookAdminTab('Nodes/admin_edit', $title, $element, $options);
+$options['elementData']['field'] = 'description';
+Croogo::hookAdminTab('SeoLiteUrls/admin_add', $title, $element, $options);
+Croogo::hookAdminTab('SeoLiteUrls/admin_edit', $title, $element, $options);
+
+CroogoNav::add('extensions.children.seo_lite', array(
+	'title' => 'SeoLite',
+	'url' => 'javascript:void(0)',
+	'children' => array(
+		'urls' => array(
+			'title' => __d('seo_lite', 'Meta by URL'),
+			'url' => array(
+				'admin' => true,
+				'plugin' => 'seo_lite',
+				'controller' => 'seo_lite_urls',
+				'action' => 'index',
+			),
+		),
+	),
+));

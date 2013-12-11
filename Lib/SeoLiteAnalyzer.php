@@ -9,7 +9,7 @@ class SeoLiteAnalyzer {
 		$analyzer = new colossal_mind_mb_keyword_gen($params);
 		$keywords = $analyzer->get_keywords();
 
-		$para = html_entity_decode($text, ENT_QUOTES);
+		$para = trim(html_entity_decode($text, ENT_QUOTES));
 		list($description, ) = explode("\n", strip_tags($para), 2);
 		$description = trim($description);
 

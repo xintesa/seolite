@@ -7,3 +7,7 @@
 
 This will add a new tab when editing nodes to enter keywords and description
 for a given page
+
+You can also add tags by URL. Useful for custom plugin actions, ie: nstead of
+adding your meta tags in the views, we can configure these tags from the
+admin interface
