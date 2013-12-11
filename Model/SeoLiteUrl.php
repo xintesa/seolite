@@ -43,6 +43,9 @@ class SeoLiteUrl extends SeoLiteAppModel {
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 			),
+			'uniquePath' => array(
+				'rule' => array('isUniquePath'),
+			),
 		),
 		'status' => array(
 			'boolean' => array(
@@ -50,6 +53,25 @@ class SeoLiteUrl extends SeoLiteAppModel {
 			),
 		),
 	);
+
+	public function isUniquePath($check) {
+		if (empty($check['url'])) {
+			return true;
+		}
+		$url = Router::normalize($check['url']);
+		$Node = ClassRegistry::init('Nodes.Node');
+		$node = $Node->find('first', array(
+			'fields' => 'id',
+			'recursive' => -1,
+			'conditions' => array(
+				'path' => $url,
+			),
+		));
+		if (empty($node['Node']['id'])) {
+			return true;
+		}
+		return __('URL "%s" conflicts with Node #%d', $url, $node['Node']['id']);
+	}
 
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['url'])) {
