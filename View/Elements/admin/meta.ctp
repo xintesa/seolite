@@ -39,6 +39,8 @@ $id = !empty($this->data[$this->Form->defaultModel]['id']) ?
 $keys = Configure::read('SeoLite.keys');
 $fields = array(
 	'id' => array('type' => 'hidden'),
+	'model' => array('type' => 'hidden'),
+	'foreign_key' => array('type' => 'hidden'),
 	'key' => array('type' => 'hidden'),
 	'value' => array('type' => 'textarea'),
 );
@@ -48,6 +50,12 @@ foreach ($keys as $key => $keyOptions):
 		$input = sprintf('SeoLite.%s.%s', $key, $field);
 		if ($field === 'id' && empty($this->data['SeoLite'][$key]['id'])):
 			$options['value'] = String::uuid();
+		endif;
+		if ($field === 'model'):
+			$options['value'] = $this->Form->defaultModel;
+		endif;
+		if ($field === 'foreign_key'):
+			$options['value'] = $id;
 		endif;
 		if ($field === 'key' && empty($this->data['SeoLite'][$key]['key'])):
 			$options['value'] = $key;
