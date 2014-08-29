@@ -11,7 +11,7 @@ class SeoLiteActivation {
 		$result = $CroogoPlugin->migrate('SeoLite');
 		if ($result) {
 			$Setting = ClassRegistry::init('Settings.Setting');
-			$Setting->write('SeoLite.installed', true);
+			$Setting->write('Seolite.installed', true);
 		}
 		return $result;
 	}
@@ -22,7 +22,7 @@ class SeoLiteActivation {
 
 	public function onDeactivation(&$controller) {
 		$Setting = ClassRegistry::init('Settings.Setting');
-		$Setting->deleteKey('SeoLite.installed');
+		$Setting->deleteKey('Seolite.installed');
 	}
 
 }

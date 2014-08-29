@@ -1,5 +1,5 @@
 <?php
-$this->Html->script('SeoLite.admin', array('inline' => false));
+$this->Html->script('Seolite.admin', array('inline' => false));
 $field = isset($field) ? $field : 'body';
 $id = !empty($this->data[$this->Form->defaultModel]['id']) ?
 	$this->data[$this->Form->defaultModel]['id'] :
@@ -36,7 +36,7 @@ $id = !empty($this->data[$this->Form->defaultModel]['id']) ?
 </div>
 <?php
 
-$keys = Configure::read('SeoLite.keys');
+$keys = Configure::read('Seolite.keys');
 $fields = array(
 	'id' => array('type' => 'hidden'),
 	'model' => array('type' => 'hidden'),
@@ -47,7 +47,7 @@ $fields = array(
 
 foreach ($keys as $key => $keyOptions):
 	foreach ($fields as $field => $options):
-		$input = sprintf('SeoLite.%s.%s', $key, $field);
+		$input = sprintf('Seolite.%s.%s', $key, $field);
 		if ($field === 'id' && empty($this->data['SeoLite'][$key]['id'])):
 			$options['value'] = String::uuid();
 		endif;

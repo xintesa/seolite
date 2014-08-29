@@ -1,6 +1,6 @@
 <?php
 
-App::uses('SeoLiteAppModel', 'SeoLite.Model');
+App::uses('SeoLiteAppModel', 'Seolite.Model');
 App::uses('Croogo', 'Croogo.Lib');
 
 /**
@@ -14,7 +14,7 @@ class SeoLiteUrl extends SeoLiteAppModel {
 	public $actsAs = array(
 		'Croogo.Trackable',
 		'Meta.Meta',
-		'SeoLite.SeoCustomFields',
+		'Seolite.SeoCustomFields',
 		'Search.Searchable',
 	);
 

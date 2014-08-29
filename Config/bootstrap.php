@@ -6,7 +6,7 @@ $cacheConfig = array_merge(
 );
 CroogoCache::config('seo_lite', $cacheConfig);
 
-Configure::write('SeoLite.keys', array(
+Configure::write('Seolite.keys', array(
 	'meta_keywords' => array(
 		'label' => __d('seolite', 'Keywords'),
 	),
@@ -18,7 +18,7 @@ Configure::write('SeoLite.keys', array(
 	),
 ));
 
-Croogo::hookHelper('*', 'SeoLite.SeoLite');
+Croogo::hookHelper('*', 'Seolite.SeoLite');
 
 $queryString = env('REQUEST_URI');
 if (strpos($queryString, 'admin') === false) {
@@ -29,12 +29,12 @@ if (strpos($queryString, 'admin') === false) {
  * stuff for /admin routes only
  */
 
-Croogo::hookBehavior('Node', 'SeoLite.SeoCustomFields', array(
+Croogo::hookBehavior('Node', 'Seolite.SeoCustomFields', array(
 	'priority' => 1,
 ));
 
 $title = 'SeoLite';
-$element = 'SeoLite.admin/meta';
+$element = 'Seolite.admin/meta';
 $options = array(
 	'elementData' => array(
 		'field' => 'body',
