@@ -1,5 +1,5 @@
 <?php
-$this->Html->script('SeoLite.admin', array('inline' => false));
+$this->Html->script('Seolite.admin', array('inline' => false));
 $field = isset($field) ? $field : 'body';
 $id = !empty($this->data[$this->Form->defaultModel]['id']) ?
 	$this->data[$this->Form->defaultModel]['id'] :
@@ -11,7 +11,7 @@ $id = !empty($this->data[$this->Form->defaultModel]['id']) ?
 			<ul class="nav-buttons">
 			<?php
 			echo $this->Croogo->adminAction(__d('seolite', 'Analyze'), array(
-				'plugin' => 'seo_lite',
+				'plugin' => 'seolite',
 				'controller' => 'seo_lite_analyze',
 				'action' => 'index',
 				$this->Form->plugin,
@@ -36,7 +36,7 @@ $id = !empty($this->data[$this->Form->defaultModel]['id']) ?
 </div>
 <?php
 
-$keys = Configure::read('SeoLite.keys');
+$keys = Configure::read('Seolite.keys');
 $fields = array(
 	'id' => array('type' => 'hidden'),
 	'model' => array('type' => 'hidden'),
