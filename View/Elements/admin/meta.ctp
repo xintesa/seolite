@@ -11,7 +11,7 @@ $id = !empty($this->data[$this->Form->defaultModel]['id']) ?
 			<ul class="nav-buttons">
 			<?php
 			echo $this->Croogo->adminAction(__d('seolite', 'Analyze'), array(
-				'plugin' => 'seo_lite',
+				'plugin' => 'seolite',
 				'controller' => 'seo_lite_analyze',
 				'action' => 'index',
 				$this->Form->plugin,
@@ -47,7 +47,7 @@ $fields = array(
 
 foreach ($keys as $key => $keyOptions):
 	foreach ($fields as $field => $options):
-		$input = sprintf('Seolite.%s.%s', $key, $field);
+		$input = sprintf('SeoLite.%s.%s', $key, $field);
 		if ($field === 'id' && empty($this->data['SeoLite'][$key]['id'])):
 			$options['value'] = String::uuid();
 		endif;
