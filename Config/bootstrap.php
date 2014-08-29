@@ -20,7 +20,7 @@ Configure::write('SeoLite.keys', array(
 
 Croogo::hookHelper('*', 'SeoLite.SeoLite');
 
-$queryString = env('QUERY_STRING');
+$queryString = env('REQUEST_URI');
 if (strpos($queryString, 'admin') === false) {
 	return;
 }
