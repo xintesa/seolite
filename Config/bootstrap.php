@@ -46,7 +46,7 @@ $options['elementData']['field'] = 'description';
 Croogo::hookAdminTab('SeoLiteUrls/admin_add', $title, $element, $options);
 Croogo::hookAdminTab('SeoLiteUrls/admin_edit', $title, $element, $options);
 
-CroogoNav::add('extensions.children.seo_lite', array(
+CroogoNav::add('sidebar', 'extensions.children.seo_lite', array(
 	'title' => 'SeoLite',
 	'url' => 'javascript:void(0)',
 	'children' => array(
@@ -54,7 +54,7 @@ CroogoNav::add('extensions.children.seo_lite', array(
 			'title' => __d('seo_lite', 'Meta by URL'),
 			'url' => array(
 				'admin' => true,
-				'plugin' => 'seo_lite',
+				'plugin' => 'seolite',
 				'controller' => 'seo_lite_urls',
 				'action' => 'index',
 			),

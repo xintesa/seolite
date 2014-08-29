@@ -8,7 +8,7 @@ class SeoLiteActivation {
 
 	public function onActivation(&$controller) {
 		$CroogoPlugin = new CroogoPlugin();
-		$result = $CroogoPlugin->migrate('SeoLite');
+		$result = $CroogoPlugin->migrate('Seolite');
 		if ($result) {
 			$Setting = ClassRegistry::init('Settings.Setting');
 			$Setting->write('Seolite.installed', true);
