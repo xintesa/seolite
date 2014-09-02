@@ -15,6 +15,6 @@
 		"php": ">=5.3.0",
 		"composer/installers": "*",
 		"croogo/croogo": "~2.1",
-		"dakota/multibyte-keyword-generator": "dev-master"
+		"dakota/multibyte-keyword-generator": "~1.7"
 	}
 }
