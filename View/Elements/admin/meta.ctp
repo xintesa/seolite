@@ -1,40 +1,33 @@
 <?php
-$this->Html->script('SeoLite.admin', array('inline' => false));
+
+$this->Html->script('SeoLite.admin', array('block' => 'scriptBottom'));
+
 $field = isset($field) ? $field : 'body';
 $id = !empty($this->data[$this->Form->defaultModel]['id']) ?
 	$this->data[$this->Form->defaultModel]['id'] :
 	null;
-?>
-<div class="row-fluid">
-	<div class="span12">
-		<div class="actions pull-right">
-			<ul class="nav-buttons">
-			<?php
-			echo $this->Croogo->adminAction(__d('seolite', 'Analyze'), array(
-				'plugin' => 'seo_lite',
-				'controller' => 'seo_lite_analyze',
-				'action' => 'index',
-				$this->Form->plugin,
-				$this->Form->defaultModel,
-				$id,
-				$field,
-				'ext' => 'json',
-			), array(
-				'data-toggle' => 'seo-lite-analyze',
-				'data-id' => $id,
-				'icon' => 'cogs',
-				'iconSize' => 'small',
-				'tooltip' => array(
-					'data-title' => 'Simple auto keywords and description',
-					'data-placement' => 'left',
-				),
-			));
-			?>
-			</ul>
-		</div>
-	</div>
-</div>
-<?php
+
+$this->append('actions');
+	echo $this->Croogo->adminAction(__d('seolite', 'Analyze'), array(
+		'plugin' => 'seo_lite',
+		'controller' => 'seo_lite_analyze',
+		'action' => 'index',
+		$this->Form->plugin,
+		$this->Form->defaultModel,
+		$id,
+		$field,
+		'ext' => 'json',
+	), array(
+		'data-toggle' => 'seo-lite-analyze',
+		'data-id' => $id,
+		'icon' => 'cogs',
+		'iconSize' => 'small',
+		'tooltip' => array(
+		'data-title' => 'Simple auto keywords and description',
+		'data-placement' => 'right',
+		),
+	));
+$this->end();
 
 $keys = Configure::read('SeoLite.keys');
 $fields = array(
