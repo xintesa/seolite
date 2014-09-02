@@ -1,6 +1,6 @@
 <?php
 
-App::uses('SeoLiteAppController', 'SeoLite.Controller');
+App::uses('SeoLiteAppController', 'Seolite.Controller');
 /**
  * SeoLiteUrls Controller
  *

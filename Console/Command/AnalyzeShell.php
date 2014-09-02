@@ -1,6 +1,6 @@
 <?php
 
-App::uses('SeoLiteAnalyzer', 'SeoLite.Lib');
+App::uses('SeoLiteAnalyzer', 'Seolite.Lib');
 App::uses('AppShell', 'Console/Command');
 
 class AnalyzeShell extends AppShell {
