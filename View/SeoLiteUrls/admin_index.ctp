@@ -13,20 +13,25 @@ echo $this->Croogo->adminAction(__d('seo_lite', 'New URL'),
 );
 $this->end();
 
-?>
-<div class="seoLiteUrls index">
-	<table class="table table-striped">
-	<tr>
-		<th><?php echo $this->Paginator->sort('id'); ?></th>
-		<th><?php echo $this->Paginator->sort('url'); ?></th>
-		<th><?php echo $this->Paginator->sort('created'); ?></th>
-		<th><?php echo $this->Paginator->sort('created_by'); ?></th>
-		<th><?php echo $this->Paginator->sort('updated'); ?></th>
-		<th><?php echo $this->Paginator->sort('updated_by'); ?></th>
-		<th><?php echo $this->Paginator->sort('status'); ?></th>
-		<th class="actions"><?php echo __d('croogo', 'Actions'); ?></th>
-	</tr>
-	<?php foreach ($seoLiteUrls as $seoLiteUrl): ?>
+$this->append('table-heading');
+
+	$tableHeaders = $this->Html->tableHeaders(array(
+		$this->Paginator->sort('id'),
+		$this->Paginator->sort('url'),
+		$this->Paginator->sort('created'),
+		$this->Paginator->sort('created_by'),
+		$this->Paginator->sort('updated'),
+		$this->Paginator->sort('updated_by'),
+		$this->Paginator->sort('status'),
+		__d('croogo', 'Actions')
+	));
+	echo $this->Html->tag('thead', $tableHeaders);
+
+$this->end();
+
+$this->append('table-body');
+
+foreach ($seoLiteUrls as $seoLiteUrl): ?>
 	<tr>
 		<td><?php echo h($seoLiteUrl['SeoLiteUrl']['id']); ?>&nbsp;</td>
 		<td>
@@ -47,6 +52,7 @@ $this->end();
 			<?php echo $this->Croogo->adminRowAction('', array('action' => 'delete', $seoLiteUrl['SeoLiteUrl']['id']), array('icon' => 'trash'), __d('croogo', 'Are you sure you want to delete # %s?', $seoLiteUrl['SeoLiteUrl']['id'])); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
-	</table>
-</div>
+<?php endforeach;
+
+$this->end();
+?>
