@@ -2,7 +2,7 @@
 
 $config = array(
 	'EventHandlers' => array(
-		'SeoLite.SeoLiteEventHandler' => array(
+		'Seolite.SeoLiteEventHandler' => array(
 			'options' => array(
 				'priority' => 8,
 			),

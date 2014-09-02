@@ -19,7 +19,7 @@ class SeoLiteHelper extends AppHelper {
 			return;
 		}
 		$url = Router::normalize($this->request->url);
-		$Url = ClassRegistry::init('SeoLite.SeoLiteUrl');
+		$Url = ClassRegistry::init('Seolite.SeoLiteUrl');
 		$data = $Url->find('first', array(
 			'fields' => array('id', 'url'),
 			'recursive' => -1,

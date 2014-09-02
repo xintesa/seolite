@@ -1,7 +1,5 @@
 <?php
 
-require CakePlugin::path('SeoLite') . 'Vendor/KeywordGenerator/class.colossal-mind-mb-keyword-generator.php';
-
 class SeoLiteAnalyzer {
 
 	public function analyze($text) {
