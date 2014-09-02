@@ -8,11 +8,13 @@ SeoLite.analyze = function(e) {
 		return alert('Please save/apply your data first');
 	}
 
+	$('.nav [href="#node-seolite"]').tab('show');
+
 	var $keywords = $('#SeoLiteMetaKeywordsValue');
 	var $description = $('#SeoLiteMetaDescriptionValue');
 
 	if ($keywords.val().length > 0 || $description.val().length > 0) {
-		if (!confirm('Replace existing keywords and description')) {
+		if (!confirm('Replace existing keywords and description?')) {
 			return false;
 		}
 	}
