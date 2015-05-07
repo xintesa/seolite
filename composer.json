@@ -1,7 +1,7 @@
 {
 	"name": "xintesa/seolite",
 	"type": "croogo-plugin",
-	"description": "Croogo Plugin to help editing SEO meta data crap",
+	"description": "Croogo Plugin to help editing SEO meta data",
 	"homepage": "http://github.com/xintesa/seolite",
 	"license": "MIT",
 	"authors": [
@@ -13,7 +13,7 @@
 	],
 	"require": {
 		"php": ">=5.3.0",
-		"composer/installers": "*",
+		"composer/installers": "~1.0",
 		"croogo/croogo": "~2.1",
 		"dakota/multibyte-keyword-generator": "~1.7"
 	}
