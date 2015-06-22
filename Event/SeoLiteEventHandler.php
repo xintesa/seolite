@@ -1,6 +1,7 @@
 <?php
 
 App::uses('CakeEventListener', 'Event');
+App::uses('String', 'Utility');
 
 class SeoLiteEventHandler extends Object implements CakeEventListener {
 
