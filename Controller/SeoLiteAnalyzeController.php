@@ -14,8 +14,15 @@ class SeoLiteAnalyzeController extends SeoLiteAppController {
 		$Model->id = $id;
 		$body = $Model->field($field);
 
+		if ($Model->hasField('excerpt')) {
+			$excerpt = $Model->field('excerpt');
+		}
+
 		$Analyzer = new SeoLiteAnalyzer();
 		$result = $Analyzer->analyze($body);
+		if (!empty($excerpt)) {
+			$result['description'] = $excerpt;
+		}
 		extract($result);
 
 		$this->set('_rootNode', 'results');
