@@ -2,6 +2,8 @@
 
 namespace Seolite;
 
+use Croogo\Core\Utility\StringConverter;
+
 class SeoLiteAnalyzer
 {
     public function analyze($text)
@@ -12,8 +14,7 @@ class SeoLiteAnalyzer
 
         $para = trim(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 
-        list($description,) = explode("\n", strip_tags($para), 2);
-        $description = trim($description);
+        $description = (new StringConverter())->firstPara($para);
 
         return compact('keywords', 'description');
     }

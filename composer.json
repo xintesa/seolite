@@ -12,9 +12,8 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "composer/installers": "~1.0",
-        "croogo/croogo": "~2.1",
+        "php": ">=5.5.8",
+        "croogo/croogo": "3.0.x-dev",
         "dakota/multibyte-keyword-generator": "~1.7"
     }
 }
