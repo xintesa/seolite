@@ -6,6 +6,7 @@ use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\ORM\Behavior;
 use Cake\ORM\Entity;
+use Cake\Utility\Text;
 
 class CustomFieldsBehavior extends Behavior
 {
@@ -23,8 +24,31 @@ class CustomFieldsBehavior extends Behavior
     public function implementedEvents()
     {
         return parent::implementedEvents() + [
-            'Model.Meta.formatFields' => 'formatSeoFields'
+            'Model.Meta.formatFields' => 'formatSeoFields',
+            'Model.Meta.prepareFields' => 'prepareSeoFields',
         ];
+    }
+
+    /**
+     * Format data so that it can be processed by MetaBehavior for saving
+     */
+    public function prepareSeoFields(Event $event)
+    {
+        $data = $event->data['data'];
+        if (isset($data['seo_lite'])) {
+            if (empty($data['meta'])) {
+                $data['meta'] = [];
+            }
+
+            $values = array_values($data['seo_lite']);
+            foreach ($values as $value) {
+                if (strlen($value['id']) == 36) {
+                    unset($value['id']);
+                }
+                $data['meta'][Text::uuid()] = $value;
+            }
+        }
+        unset($data['seo_lite']);
     }
 
     public function formatSeoFields(Event $event, Entity $entity)
@@ -34,6 +58,7 @@ class CustomFieldsBehavior extends Behavior
         if (!isset($entity->meta)) {
             return;
         }
+        $entity->seo_lite = [];
         foreach ($entity->meta as $index => $meta) {
             if (!in_array($meta->key, $keys)) {
                 continue;

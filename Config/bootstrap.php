@@ -30,7 +30,7 @@ if (strpos($queryString, 'admin') === false) {
  * stuff for /admin routes only
  */
 
-Croogo::hookBehavior('Node', 'Seolite.SeoCustomFields', [
+Croogo::hookBehavior('Croogo/Nodes.Nodes', 'Seolite.CustomFields', [
     'priority' => 1,
 ]);
 
