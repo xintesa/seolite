@@ -1,6 +1,7 @@
 <?php
 
-App::uses('AppModel', 'Model');
+
+namespace Seolite\Model;
 
 class SeoLiteAppModel extends AppModel {
 

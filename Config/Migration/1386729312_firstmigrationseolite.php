@@ -1,5 +1,7 @@
 <?php
 
+namespace Seolite\Config\Migration;
+
 class FirstMigrationSeoLite extends CakeMigration {
 
 	public $description = '';

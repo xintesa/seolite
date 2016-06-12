@@ -1,6 +1,7 @@
 <?php
 
-App::uses('ModelBehavior', 'Model');
+
+namespace Seolite\Model\Behavior;
 
 class SeoCustomFieldsBehavior extends ModelBehavior {
 

@@ -1,7 +1,9 @@
 <?php
 
+namespace Seolite\Lib;
+
 if (!class_exists('colossal_mind_mb_keyword_gen')) {
-	require CakePlugin::path('Seolite') . 'Vendor/KeywordGenerator/class.colossal-mind-mb-keyword-generator.php';
+	require Plugin::path('Seolite') . 'Vendor/KeywordGenerator/class.colossal-mind-mb-keyword-generator.php';
 }
 
 class SeoLiteAnalyzer {

@@ -1,6 +1,7 @@
 <?php
 
-App::uses('AppController', 'Controller');
+
+namespace Seolite\Controller;
 
 class SeoLiteAppController extends AppController {
 

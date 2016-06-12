@@ -49,7 +49,7 @@ foreach ($seoLiteUrls as $seoLiteUrl): ?>
 		<td class="item-actions">
 			<?php echo $this->Croogo->adminRowAction('', array('action' => 'view', $seoLiteUrl['SeoLiteUrl']['id']), array('icon' => 'eye-open')); ?>
 			<?php echo $this->Croogo->adminRowAction('', array('action' => 'edit', $seoLiteUrl['SeoLiteUrl']['id']), array('icon' => 'pencil')); ?>
-			<?php echo $this->Croogo->adminRowAction('', array('action' => 'delete', $seoLiteUrl['SeoLiteUrl']['id']), array('icon' => 'trash'), __d('croogo', 'Are you sure you want to delete # %s?', $seoLiteUrl['SeoLiteUrl']['id'])); ?>
+			<?php echo $this->Croogo->adminRowAction('', array('action' => 'delete', $seoLiteUrl['SeoLiteUrl']['id']), array('icon' => 'trash'), __d('croogo', 'Are you sure you want to delete # {0}?', $seoLiteUrl['SeoLiteUrl']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach;

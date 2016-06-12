@@ -1,7 +1,7 @@
 <?php
 
-App::uses('SeoLiteAnalyzer', 'Seolite.Lib');
-App::uses('AppShell', 'Console/Command');
+
+namespace Seolite\Console\Command;
 
 class AnalyzeShell extends AppShell {
 

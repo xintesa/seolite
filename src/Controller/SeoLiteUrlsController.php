@@ -1,12 +1,13 @@
 <?php
 
-App::uses('SeoLiteAppController', 'Seolite.Controller');
 /**
  * SeoLiteUrls Controller
  *
  * @property SeoLiteUrl $SeoLiteUrl
  * @property PaginatorComponent $Paginator
  */
+namespace Seolite\Controller;
+
 class SeoLiteUrlsController extends SeoLiteAppController {
 
 /**

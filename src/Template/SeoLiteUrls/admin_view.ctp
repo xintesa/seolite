@@ -12,7 +12,7 @@ $this->Html
 	<div class="span12 actions">
 		<ul class="nav-buttons">
 		<li><?php echo $this->Html->link(__d('croogo', 'Edit URL'), array('action' => 'edit', $seoLiteUrl['SeoLiteUrl']['id']), array('button' => 'default')); ?> </li>
-		<li><?php echo $this->Form->postLink(__d('croogo', 'Delete URL'), array('action' => 'delete', $seoLiteUrl['SeoLiteUrl']['id']), array('button' => 'danger', 'escape' => true), __d('croogo', 'Are you sure you want to delete # %s?', $seoLiteUrl['SeoLiteUrl']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__d('croogo', 'Delete URL'), array('action' => 'delete', $seoLiteUrl['SeoLiteUrl']['id']), array('button' => 'danger', 'escape' => true), __d('croogo', 'Are you sure you want to delete # {0}?', $seoLiteUrl['SeoLiteUrl']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__d('croogo', 'List URLs'), array('action' => 'index'), array('button' => 'default')); ?> </li>
 		<li><?php echo $this->Html->link(__d('croogo', 'New URL'), array('action' => 'add'), array('button' => 'success')); ?> </li>
 		</ul>

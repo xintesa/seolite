@@ -1,7 +1,7 @@
 <?php
 
-App::uses('SeoLiteAnalyzer', 'Seolite.Lib');
-App::uses('SeoLiteAppController', 'Seolite.Controller');
+
+namespace Seolite\Controller;
 
 class SeoLiteAnalyzeController extends SeoLiteAppController {
 

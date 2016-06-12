@@ -1,5 +1,7 @@
 <?php
 
+namespace Seolite\Config;
+
 $config = array(
 	'EventHandlers' => array(
 		'Seolite.SeoLiteEventHandler' => array(

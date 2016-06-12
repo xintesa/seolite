@@ -1,5 +1,7 @@
 <?php
 
+namespace Seolite\Config;
+
 class SeoLiteActivation {
 
 	public function beforeActivation(&$controller) {

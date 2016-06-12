@@ -1,12 +1,12 @@
 <?php
 
-App::uses('SeoLiteAppModel', 'Seolite.Model');
-App::uses('Croogo', 'Croogo.Lib');
 
 /**
  * SeoLiteUrl Model
  *
  */
+namespace Seolite\Model;
+
 class SeoLiteUrl extends SeoLiteAppModel {
 
 	public $useTable = 'urls';
@@ -70,7 +70,7 @@ class SeoLiteUrl extends SeoLiteAppModel {
 		if (empty($node['Node']['id'])) {
 			return true;
 		}
-		return __('URL "%s" conflicts with Node #%d', $url, $node['Node']['id']);
+		return __('URL "{0}" conflicts with Node #{1}', $url, $node['Node']['id']);
 	}
 
 	public function beforeSave($options = array()) {

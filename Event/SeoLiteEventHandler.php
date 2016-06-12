@@ -1,9 +1,9 @@
 <?php
 
-App::uses('CakeEventListener', 'Event');
-App::uses('String', 'Utility');
 
-class SeoLiteEventHandler extends Object implements CakeEventListener {
+namespace Seolite\Event;
+
+class SeoLiteEventHandler extends Object implements EventListener {
 
 	public function implementedEvents() {
 		return array(
@@ -19,7 +19,7 @@ class SeoLiteEventHandler extends Object implements CakeEventListener {
 /**
  * Format data so that it can be processed by MetaBehavior for saving
  */
-	public function onBeforeSaveNode(CakeEvent $event) {
+	public function onBeforeSaveNode(Event $event) {
 		$data =& $event->data;
 		if (isset($data['data']['SeoLite'])) {
 			if (empty($data['data']['Meta'])):
@@ -32,7 +32,7 @@ class SeoLiteEventHandler extends Object implements CakeEventListener {
 					unset($value['id']);
 				}
 				if (!empty($value['value'])) {
-					$data['data']['Meta'][String::uuid()] = $value;
+					$data['data']['Meta'][Text::uuid()] = $value;
 				} else {
 					// mark empty records for deletion
 					if (isset($value['id'])) {
@@ -48,7 +48,7 @@ class SeoLiteEventHandler extends Object implements CakeEventListener {
 /**
  * Delete records that has been marked for deletion from $event->data['delete']
  */
-	public function onAfterSaveNode(CakeEvent $event) {
+	public function onAfterSaveNode(Event $event) {
 		if (empty($event->data['delete'])) {
 			return $event;
 		}

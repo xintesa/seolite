@@ -1,6 +1,7 @@
 <?php
 
-App::uses('AppHelper', 'View/Helper');
+
+namespace Seolite\View\Helper;
 
 class SeoLiteHelper extends AppHelper {
 
