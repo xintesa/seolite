@@ -9,6 +9,7 @@ namespace Seolite\Model\Table;
 use Cake\Event\Event;
 use Cake\ORM\Table;
 use Cake\Routing\Router;
+use Cake\Validation\Validator;
 
 /**
  * Class UrlsTable

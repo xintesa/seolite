@@ -1,62 +1,70 @@
 <?php
 
-
 namespace Seolite\Event;
 
-class SeoLiteEventHandler extends Object implements EventListener {
+use Cake\Event\EventListenerInterface;
 
-	public function implementedEvents() {
-		return array(
-			'Model.Node.beforeSaveNode' => array(
-				'callable' => 'onBeforeSaveNode',
-			),
-			'Model.Node.afterSaveNode' => array(
-				'callable' => 'onAfterSaveNode',
-			),
-		);
-	}
+class SeoLiteEventHandler implements EventListenerInterface
+{
 
-/**
- * Format data so that it can be processed by MetaBehavior for saving
- */
-	public function onBeforeSaveNode(Event $event) {
-		$data =& $event->data;
-		if (isset($data['data']['SeoLite'])) {
-			if (empty($data['data']['Meta'])):
-				$data['data']['Meta'] = array();
-			endif;
+    public function implementedEvents()
+    {
+        return [
+            'Model.Node.beforeSaveNode' => [
+                'callable' => 'onBeforeSaveNode',
+            ],
+            'Model.Node.afterSaveNode' => [
+                'callable' => 'onAfterSaveNode',
+            ],
+        ];
+    }
 
-			$values = array_values($data['data']['SeoLite']);
-			foreach ($values as $value) {
-				if (strlen($value['id']) == 36) {
-					unset($value['id']);
-				}
-				if (!empty($value['value'])) {
-					$data['data']['Meta'][Text::uuid()] = $value;
-				} else {
-					// mark empty records for deletion
-					if (isset($value['id'])) {
-						$data['delete'][] = $value['id'];
-					}
-				}
-			}
-		}
-		unset($data['data']['SeoLite']);
-		return $event;
-	}
+    /**
+     * Format data so that it can be processed by MetaBehavior for saving
+     */
+    public function onBeforeSaveNode(Event $event)
+    {
+        $node = $event->data['node'];
+        if (isset($node->seo_lite)) {
+            if (empty($node->meta)) {
+                $node->meta = [];
+            }
 
-/**
- * Delete records that has been marked for deletion from $event->data['delete']
- */
-	public function onAfterSaveNode(Event $event) {
-		if (empty($event->data['delete'])) {
-			return $event;
-		}
+            $values = array_values($node->seo_lite);
+            foreach ($values as $value) {
+                if (strlen($value['id']) == 36) {
+                    unset($value['id']);
+                }
+                if (!empty($value['value'])) {
+                    $node->meta[Text::uuid()] = $value;
+                } else {
+                    // mark empty records for deletion
+                    if (isset($value['id'])) {
+                        $node['delete'][] = $value['id'];
+                    }
+                }
+            }
+        }
+        unset($node->seo_lite);
 
-		ClassRegistry::init('Meta.Meta')->deleteAll(array(
-			'Meta.id' => $event->data['delete']
-		));
-		return $event;
-	}
+        return $event;
+    }
+
+    /**
+     * Delete records that has been marked for deletion from $event->data['delete']
+     */
+    public function onAfterSaveNode(Event $event)
+    {
+        if (empty($event->data['delete'])) {
+            return $event;
+        }
+
+        ClassRegistry::init('Meta.Meta')
+            ->deleteAll([
+                'Meta.id' => $event->data['delete'],
+            ]);
+
+        return $event;
+    }
 
 }

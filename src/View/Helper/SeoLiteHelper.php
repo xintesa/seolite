@@ -6,8 +6,9 @@ use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\Utility\Text;
+use Croogo\Core\View\Helper\CroogoAppHelper;
 
-class SeoLiteHelper extends AppHelper
+class SeoLiteHelper extends CroogoAppHelper
 {
     public function canonical()
     {
@@ -21,9 +22,9 @@ class SeoLiteHelper extends AppHelper
         return $link;
     }
 
-    public function beforeRender($viewFile)
+    public function beforeRender()
     {
-        if (isset($this->request->params['admin'])) {
+        if ($this->request->param('prefix') === 'admin') {
             return;
         }
         $url = Router::normalize($this->request->url);
@@ -38,7 +39,7 @@ class SeoLiteHelper extends AppHelper
             ->cache('urlmeta_' . Text::slug($url), 'seo_lite')
             ->first();
 
-        if ($data->has('custom_fields')) {
+        if ($data && $data->has('custom_fields')) {
             $metas = [];
             foreach ($data->custom_fields as $key => $value) {
                 if (strpos($key, 'meta_') !== false) {

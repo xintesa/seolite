@@ -4,7 +4,7 @@ use \Croogo\Core\Croogo;
 use \Croogo\Core\Cache\CroogoCache;
 use \Croogo\Core\Nav;
 
-$cacheConfig = array_merge(Configure::read('Cache.defaultConfig'), ['groups' => ['seo_lite']]);
+$cacheConfig = array_merge(Configure::read('Croogo.Cache.defaultConfig'), ['groups' => ['seo_lite']]);
 CroogoCache::config('seo_lite', $cacheConfig);
 
 Configure::write('Seolite.keys', [
@@ -47,7 +47,7 @@ $options['elementData']['field'] = 'description';
 Croogo::hookAdminTab('Admin/SeoLiteUrls/add', $title, $element, $options);
 Croogo::hookAdminTab('Admin/SeoLiteUrls/edit', $title, $element, $options);
 
-Nav::add('sidebar', 'extensions.children.seo_lite', [
+Nav::add('sidebar', 'seo_lite', [
     'title' => 'SeoLite',
     'url' => 'javascript:void(0)',
     'children' => [
@@ -55,8 +55,8 @@ Nav::add('sidebar', 'extensions.children.seo_lite', [
             'title' => __d('seo_lite', 'Meta by URL'),
             'url' => [
                 'admin' => true,
-                'plugin' => 'seolite',
-                'controller' => 'seo_lite_urls',
+                'plugin' => 'Seolite',
+                'controller' => 'Urls',
                 'action' => 'index',
             ],
         ],
