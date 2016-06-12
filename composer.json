@@ -1,6 +1,6 @@
 {
     "name": "xintesa/seolite",
-    "type": "croogo-plugin",
+    "type": "cakephp-plugin",
     "description": "Croogo Plugin to help editing SEO meta data",
     "homepage": "http://github.com/xintesa/seolite",
     "license": "MIT",
