@@ -12,7 +12,7 @@ class SeoLiteHelper extends CroogoAppHelper
 {
     public function canonical()
     {
-        if (empty($this->_View->viewVars['node']['custom_fields'])) {
+        if (empty($this->_View->viewVars['node']['custom_fields']['rel_canonical'])) {
             return null;
         }
         $path = $this->_View->viewVars['node']['custom_fields']['rel_canonical'];
