@@ -14,6 +14,8 @@ class UrlsController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('Search.Prg');
+        $this->loadComponent('Search.Prg', [
+            'actions' => ['index']
+        ]);
     }
 }

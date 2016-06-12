@@ -1,63 +1,38 @@
 <?php
-$this->viewVars['title_for_layout'] = __d('croogo', 'URLs');
+$this->assign('title', __d('croogo', 'URLs'));
 $this->extend('/Common/admin_edit');
 
-$this->Html
-	->addCrumb('', '/admin', array('icon' => 'home'))
-	->addCrumb(__d('croogo', 'URLs'), array('action' => 'index'));
+$this->Html->addCrumb(__d('croogo', 'URLs'), ['action' => 'index']);
 
-if ($this->action == 'admin_edit') {
-	$this->Html->addCrumb($this->data['SeoLiteUrl']['url'], '/' . $this->request->url);
-	$this->viewVars['title_for_layout'] = 'Url: ' . $this->data['SeoLiteUrl']['url'];
+if ($this->request->param('action') === 'edit') {
+    $this->Html->addCrumb($url->url);
+    $this->assign('title', 'Url: ' . $url->url);
 } else {
-	$this->Html->addCrumb(__d('croogo', 'Add'), '/' . $this->request->url);
+    $this->Html->addCrumb(__d('croogo', 'Add'));
 }
 
-echo $this->Form->create('SeoLiteUrl');
+$this->append('form-start', $this->Form->create($url, [
+    'class' => 'protected-form',
+]));
 
-?>
-<div class="seoLiteUrls row-fluid">
-	<div class="span8">
-		<ul class="nav nav-tabs">
-		<?php
-			echo $this->Croogo->adminTab(__d('croogo', 'Url'), '#seo-lite-url');
-			echo $this->Croogo->adminTabs();
-		?>
-		</ul>
+$this->append('tab-heading');
+echo $this->Croogo->adminTab(__d('croogo', 'Url'), '#seo-lite-url');
+$this->end();
 
-		<div class="tab-content">
-			<div id='seo-lite-url' class="tab-pane">
-			<?php
-				echo $this->Form->input('id');
-				$this->Form->inputDefaults(array('label' => false, 'class' => 'span10'));
-				echo $this->Form->input('url', array(
-					'label' => 'Url',
-				));
-				echo $this->Form->input('description', array(
-					'label' => 'Description',
-				));
-				echo $this->Form->input('status', array(
-					'label' => 'Status',
-					'class' => false,
-				));
-			?>
-			</div>
-			<?php
-				echo $this->Croogo->adminTabs();
-			?>
-		</div>
+$this->append('tab-content');
+echo $this->Html->tabStart('seo-lite-url');
+echo $this->Form->input('url', [
+    'label' => 'Url',
+]);
+echo $this->Form->input('description', [
+    'label' => 'Description',
+]);
+echo $this->Form->input('status', [
+    'label' => 'Status',
+    'class' => false,
+]);
+echo $this->Html->tabEnd();
 
-	</div>
+$this->end();
 
-	<div class="span4">
-	<?php
-		echo $this->Html->beginBox(__d('croogo', 'Publishing')) .
-			$this->Form->button(__d('croogo', 'Apply'), array('name' => 'apply')) .
-			$this->Form->button(__d('croogo', 'Save'), array('class' => 'btn btn-primary')) .
-			$this->Html->link(__d('croogo', 'Cancel'), array('action' => 'index'), array('class' => 'btn btn-danger')) .
-			$this->Html->endBox();
-		?>
-	</div>
-
-</div>
-<?php echo $this->Form->end(); ?>
+$this->append('form-end', $this->Form->end());
