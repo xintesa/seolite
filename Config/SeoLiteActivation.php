@@ -1,30 +1,32 @@
 <?php
 
-namespace Seolite\Config;
+class SeoLiteActivation
+{
+    public function beforeActivation()
+    {
+        return true;
+    }
 
-class SeoLiteActivation {
+    public function onActivation()
+    {
+        $CroogoPlugin = new \Croogo\Extensions\CroogoPlugin();
+        $result = $CroogoPlugin->migrate('Seolite');
+        if ($result) {
+            $Setting = \Cake\ORM\TableRegistry::get('Croogo/Settings.Settings');
+            $Setting->write('Seolite.installed', true);
+        }
 
-	public function beforeActivation(&$controller) {
-		return true;
-	}
+        return $result;
+    }
 
-	public function onActivation(&$controller) {
-		$CroogoPlugin = new CroogoPlugin();
-		$result = $CroogoPlugin->migrate('Seolite');
-		if ($result) {
-			$Setting = ClassRegistry::init('Settings.Setting');
-			$Setting->write('Seolite.installed', true);
-		}
-		return $result;
-	}
+    public function beforeDeactivation()
+    {
+        return true;
+    }
 
-	public function beforeDeactivation(&$controller) {
-		return true;
-	}
-
-	public function onDeactivation(&$controller) {
-		$Setting = ClassRegistry::init('Settings.Setting');
-		$Setting->deleteKey('Seolite.installed');
-	}
-
+    public function onDeactivation()
+    {
+        $Setting = \Cake\ORM\TableRegistry::get('Croogo/Settings.Settings');;
+        $Setting->deleteKey('Seolite.installed');
+    }
 }

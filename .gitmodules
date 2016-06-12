@@ -1,3 +1,0 @@
-[submodule "KeywordGenerator"]
-	path = Vendor/KeywordGenerator
-	url = http://github.com/peterkahl/multibyte-keyword-generator.git

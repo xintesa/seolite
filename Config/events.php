@@ -1,13 +1,11 @@
 <?php
 
-namespace Seolite\Config;
-
-$config = array(
-	'EventHandlers' => array(
-		'Seolite.SeoLiteEventHandler' => array(
-			'options' => array(
-				'priority' => 8,
-			),
-		),
-	),
-);
+$config = [
+    'EventHandlers' => [
+        'Seolite.SeoLiteEventHandler' => [
+            'options' => [
+                'priority' => 8,
+            ],
+        ],
+    ],
+];
