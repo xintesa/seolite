@@ -7,7 +7,8 @@ Router::plugin('Seolite', ['path' => '/'], function (RouteBuilder $routeBuilder)
     $routeBuilder->prefix('admin', function (RouteBuilder $routeBuilder) {
         $routeBuilder->extensions(['json']);
 
-        $routeBuilder->connect('/seo-lite/urls', ['controller' => 'Urls', 'action' => 'view']);
+        $routeBuilder->connect('/seo-lite/analyze', ['controller' => 'Analyze', 'action' => 'index']);
+        $routeBuilder->connect('/seo-lite/urls', ['controller' => 'Urls', 'action' => 'index']);
         $routeBuilder->connect('/seo-lite/urls/:action/*', ['controller' => 'Urls']);
     });
 });

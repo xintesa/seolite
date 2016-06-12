@@ -6,9 +6,12 @@ use Seolite\SeoLiteAnalyzer;
 
 class AnalyzeController extends AppController
 {
-    public function index($plugin = null, $table = null, $id = null, $field = null)
+    public function index()
     {
-        $table = $this->loadModel($plugin . '.' . $table);
+        $table = $this->request->query('table');
+        $id = $this->request->query('id');
+        $field = $this->request->query('field');
+        $table = $this->loadModel($table);
         $item = $table->get($id);
         $body = $item->get($field);
 

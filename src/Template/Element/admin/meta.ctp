@@ -3,17 +3,17 @@
 $this->Html->script('Seolite.admin', ['block' => 'scriptBottom']);
 
 $field = isset($field) ? $field : 'body';
-$id = !empty($this->data[$this->Form->defaultModel]['id']) ? $this->data[$this->Form->defaultModel]['id'] : null;
+$id = !empty($entity->id) ? $entity->id : null;
 
-$this->append('actions');
-echo $this->Croogo->adminAction(__d('seolite', 'Analyze'), [
-    'plugin' => 'seolite',
-    'controller' => 'seo_lite_analyze',
+echo $this->Html->div('clearfix', $this->Html->div('pull-right', $this->Croogo->adminAction(__d('seolite', 'Analyze'), [
+    'plugin' => 'Seolite',
+    'controller' => 'Analyze',
     'action' => 'index',
-    $this->Form->plugin,
-    $this->Form->defaultModel,
-    $id,
-    $field,
+    '?' => [
+        'table' => $entity->source(),
+        'id' => $id,
+        'field' => $field,
+    ],
     'ext' => 'json',
 ], [
     'data-toggle' => 'seo-lite-analyze',
@@ -24,10 +24,9 @@ echo $this->Croogo->adminAction(__d('seolite', 'Analyze'), [
         'data-title' => 'Simple auto keywords and description',
         'data-placement' => 'right',
     ],
-]);
-$this->end();
+])));
 
-$keys = Configure::read('Seolite.keys');
+$keys = \Cake\Core\Configure::read('Seolite.keys');
 $fields = [
     'id' => ['type' => 'hidden'],
     'model' => ['type' => 'hidden'],
@@ -38,17 +37,17 @@ $fields = [
 
 foreach ($keys as $key => $keyOptions):
     foreach ($fields as $field => $options):
-        $input = sprintf('SeoLite.%s.%s', $key, $field);
-        if ($field === 'id' && empty($this->data['SeoLite'][$key]['id'])):
-            $options['value'] = String::uuid();
+        $input = sprintf('seo_lite.%s.%s', $key, $field);
+        if ($field === 'id' && empty($entity->seo_lite[$key]['id'])):
+            $options['value'] = \Cake\Utility\Text::uuid();
         endif;
         if ($field === 'model'):
-            $options['value'] = $this->Form->defaultModel;
+            $options['value'] = $entity->source();
         endif;
         if ($field === 'foreign_key'):
             $options['value'] = $id;
         endif;
-        if ($field === 'key' && empty($this->data['SeoLite'][$key]['key'])):
+        if ($field === 'key' && empty($entity->seo_lite[$key]['key'])):
             $options['value'] = $key;
         endif;
         if (!empty($keyOptions['label']) && $options['type'] !== 'hidden'):

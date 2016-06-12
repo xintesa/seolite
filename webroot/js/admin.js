@@ -10,8 +10,8 @@ SeoLite.analyze = function (e) {
 
   $('.nav [href="#node-seolite"]').tab('show');
 
-  var $keywords = $('#SeoLiteMetaKeywordsValue');
-  var $description = $('#SeoLiteMetaDescriptionValue');
+  var $keywords = $('#seo-lite-meta-keywords-value');
+  var $description = $('#seo-lite-meta-description-value');
 
   if ($keywords.val().length > 0 || $description.val().length > 0) {
     if (!confirm('Replace existing keywords and description?')) {
