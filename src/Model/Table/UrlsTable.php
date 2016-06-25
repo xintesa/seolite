@@ -34,7 +34,9 @@ class UrlsTable extends Table
             'dependent' => true,
             'conditions' => ['Meta.model' => 'Seolite.Urls'],
         ]);
-
+        $this->addBehavior('Croogo/Core.Cached', [
+            'groups' => ['seo_lite']
+        ]);
         $this->searchManager()
             ->value('id')
             ->like('url', [
