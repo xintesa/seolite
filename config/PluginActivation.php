@@ -1,6 +1,8 @@
 <?php
 
-class SeoLiteActivation
+namespace Seolite\Config;
+
+class PluginActivation
 {
     public function beforeActivation()
     {
