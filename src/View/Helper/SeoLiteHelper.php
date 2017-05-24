@@ -6,9 +6,9 @@ use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\Utility\Text;
-use Croogo\Core\View\Helper\CroogoAppHelper;
+use Cake\View\Helper;
 
-class SeoLiteHelper extends CroogoAppHelper
+class SeoLiteHelper extends Helper
 {
     public function canonical()
     {
