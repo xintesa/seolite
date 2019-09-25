@@ -1,20 +1,30 @@
 {
-	"name": "xintesa/seolite",
-	"type": "croogo-plugin",
-	"description": "Croogo Plugin to help editing SEO meta data",
-	"homepage": "http://github.com/xintesa/seolite",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Rachman Chavik",
-			"email": "contact@xintesa.com",
-			"homepage": "http://xintesa.com"
-		}
-	],
-	"require": {
-		"php": ">=5.3.0",
-		"composer/installers": "~1.0",
-		"croogo/croogo": "~2.1",
-		"dakota/multibyte-keyword-generator": "~1.7"
-	}
+    "name": "xintesa/seolite",
+    "type": "cakephp-plugin",
+    "description": "Croogo Plugin to help editing SEO meta data",
+    "homepage": "http://github.com/xintesa/seolite",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rachman Chavik",
+            "email": "contact@xintesa.com",
+            "homepage": "http://xintesa.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.8",
+        "croogo/croogo": "^3.0.0",
+        "dakota/multibyte-keyword-generator": "~1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Seolite\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Seolite\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
 }
