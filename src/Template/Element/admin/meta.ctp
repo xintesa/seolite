@@ -5,7 +5,8 @@ $this->Html->script('Seolite.admin', ['block' => 'scriptBottom']);
 $field = isset($field) ? $field : 'body';
 $id = !empty($entity->id) ? $entity->id : null;
 
-echo $this->Html->div('clearfix', $this->Html->div('pull-right', $this->Croogo->adminAction(__d('seolite', 'Analyze'), [
+$this->append('action-buttons');
+echo $this->Croogo->adminAction(__d('seolite', 'Analyze'), [
     'plugin' => 'Seolite',
     'controller' => 'Analyze',
     'action' => 'index',
@@ -24,7 +25,8 @@ echo $this->Html->div('clearfix', $this->Html->div('pull-right', $this->Croogo->
         'data-title' => 'Simple auto keywords and description',
         'data-placement' => 'right',
     ],
-])));
+]);
+$this->end();
 
 $keys = \Cake\Core\Configure::read('Seolite.keys');
 $fields = [

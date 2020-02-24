@@ -2,6 +2,9 @@
 
 namespace Seolite\Config;
 
+use Cake\ORM\TableRegistry;
+use Croogo\Core\PluginManager;
+
 class PluginActivation
 {
     public function beforeActivation()
@@ -11,10 +14,10 @@ class PluginActivation
 
     public function onActivation()
     {
-        $CroogoPlugin = new \Croogo\Extensions\CroogoPlugin();
+        $CroogoPlugin = new PluginManager();
         $result = $CroogoPlugin->migrate('Seolite');
         if ($result) {
-            $Setting = \Cake\ORM\TableRegistry::get('Croogo/Settings.Settings');
+            $Setting = TableRegistry::get('Croogo/Settings.Settings');
             $Setting->write('Seolite.installed', true);
         }
 
@@ -28,7 +31,7 @@ class PluginActivation
 
     public function onDeactivation()
     {
-        $Setting = \Cake\ORM\TableRegistry::get('Croogo/Settings.Settings');;
+        $Setting = TableRegistry::get('Croogo/Settings.Settings');;
         $Setting->deleteKey('Seolite.installed');
     }
 }
