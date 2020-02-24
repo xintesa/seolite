@@ -47,8 +47,8 @@ class CustomFieldsBehavior extends Behavior
                 }
                 $data['meta'][Text::uuid()] = $value;
             }
+            unset($data['seo_lite']);
         }
-        unset($data['seo_lite']);
     }
 
     public function formatSeoFields(Event $event, Entity $entity)

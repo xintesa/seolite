@@ -42,12 +42,12 @@ foreach ($urls as $url): ?>
         <td><?= $this->Html->status($url->status); ?>&nbsp;</td>
         <td class="item-actions">
             <?= $this->Croogo->adminRowAction('', ['action' => 'view', $url->id],
-                ['icon' => 'eye-open']); ?>
+                ['icon' => 'view']); ?>
             <?= $this->Croogo->adminRowAction('', ['action' => 'edit', $url->id],
-                ['icon' => 'pencil']); ?>
+                ['icon' => 'update']); ?>
             <?= $this->Croogo->adminRowAction('', ['action' => 'delete', $url->id],
                 ['icon' => 'trash'],
-                __d('croogo', 'Are you sure you want to delete # {0}?', $url->id)); ?>
+                __d('croogo', 'Are you sure you want to delete # %s ?', $url->id)); ?>
         </td>
     </tr>
 <?php endforeach;

@@ -5,7 +5,7 @@ use \Cake\Cache\Cache;
 use \Croogo\Core\Nav;
 
 $cacheConfig = array_merge(Configure::read('Croogo.Cache.defaultConfig'), ['groups' => ['seo_lite']]);
-Cache::config('seo_lite', $cacheConfig);
+Cache::setConfig('seo_lite', $cacheConfig);
 
 Configure::write('Seolite.keys', [
     'meta_keywords' => [

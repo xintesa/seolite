@@ -3,10 +3,10 @@
 namespace Seolite\Shell;
 
 use Cake\ORM\TableRegistry;
-use Croogo\Core\Shell\CroogoAppShell;
+use Croogo\Core\Shell\AppShell;
 use Seolite\SeoLiteAnalyzer;
 
-class AnalyzeShell extends CroogoAppShell
+class AnalyzeShell extends AppShell
 {
 
     public function getOptionParser()

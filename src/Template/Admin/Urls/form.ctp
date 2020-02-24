@@ -34,5 +34,3 @@ echo $this->Form->input('status', [
 echo $this->Html->tabEnd();
 
 $this->end();
-
-$this->append('form-end', $this->Form->end());
