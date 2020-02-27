@@ -1,13 +1,14 @@
 <?php
 
 /**
- * SeoLiteUrl Model
+ * Url Model
  *
  */
 namespace Seolite\Model\Table;
 
 use Cake\Event\Event;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Cake\Validation\Validator;
 
@@ -21,9 +22,8 @@ class UrlsTable extends Table
 
     public function initialize(array $config)
     {
-        $this->table('urls');
+        $this->setTable('urls');
         $this->addBehavior('Croogo/Core.Trackable');
-        $this->addBehavior('Seolite.CustomFields');
         $this->addBehavior('Croogo/Meta.Meta');
         $this->addBehavior('Search.Search');
         $this->addBehavior('Timestamp');
@@ -33,9 +33,6 @@ class UrlsTable extends Table
             'foreignKey' => 'foreign_key',
             'dependent' => true,
             'conditions' => ['Meta.model' => 'Seolite.Urls'],
-        ]);
-        $this->addBehavior('Croogo/Core.Cached', [
-            'groups' => ['seo_lite']
         ]);
         $this->searchManager()
             ->value('id')
@@ -53,33 +50,34 @@ class UrlsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
+            ->add('url', 'isUniquePath', [
+                'rule' => [$this, 'isUniquePath'],
+            ])
             ->notBlank('url');
 
         $validator
             ->boolean('status');
+
         return $validator;
     }
 
-    public function isUniquePath($check)
+    public function isUniquePath($check, array $context)
     {
-        //@TODO: Use as application rule
-        if (empty($check['url'])) {
+        if (empty($check)) {
             return true;
         }
-        $url = Router::normalize($check['url']);
-        $Node = ClassRegistry::init('Nodes.Node');
-        $node = $Node->find('first', [
-            'fields' => 'id',
-            'recursive' => -1,
-            'conditions' => [
+        $url = Router::normalize($check);
+        $node = TableRegistry::get('Croogo/Nodes.Nodes')->find()
+            ->select(['id'])
+            ->where([
                 'path' => $url,
-            ],
-        ]);
-        if (empty($node['Node']['id'])) {
+            ])
+            ->first();
+        if (empty($node->id)) {
             return true;
         }
 
-        return __('URL "{0}" conflicts with Node #{1}', $url, $node['Node']['id']);
+        return __('URL "{0}" conflicts with Node #{1}', $url, $node->id);
     }
 
     public function beforeSave(Event $event)

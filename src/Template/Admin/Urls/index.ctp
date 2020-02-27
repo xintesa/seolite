@@ -2,7 +2,12 @@
 $this->assign('title', __d('croogo', 'URLs'));
 $this->extend('/Common/admin_index');
 
-$this->Html->addCrumb(__d('croogo', 'URLs'));
+$this->Breadcrumbs->add(__d('croogo', 'Content'), [
+    'plugin' => 'Croogo/Nodes',
+    'controller' => 'Nodes',
+    'action' => 'index',
+]);
+$this->Breadcrumbs->add(__d('croogo', 'URLs'));
 
 $this->start('actions');
 echo $this->Croogo->adminAction(__d('seo_lite', 'New URL'), ['action' => 'add'], ['button' => 'success']);

@@ -4,20 +4,27 @@ use \Croogo\Core\Croogo;
 use \Cake\Cache\Cache;
 use \Croogo\Core\Nav;
 
-$cacheConfig = array_merge(Configure::read('Croogo.Cache.defaultConfig'), ['groups' => ['seo_lite']]);
-Cache::setConfig('seo_lite', $cacheConfig);
-
-Configure::write('Seolite.keys', [
-    'meta_keywords' => [
-        'label' => __d('seolite', 'Keywords'),
+Croogo::mergeConfig('Meta.keys', [
+    'og:title' => [
+        'label' => 'Open Graph Title',
+        'type' => 'text',
     ],
-    'meta_description' => [
-        'label' => __d('seolite', 'Description'),
+    'og:type' => [
+        'label' => 'Open Graph Type',
+        'type' => 'text',
     ],
-    'rel_canonical' => [
-        'label' => __d('seolite', 'Canonical Page'),
+    'og:image' => [
+        'label' => 'Open Graph Image',
+        'type' => 'text',
+    ],
+    'og:url' => [
+        'label' => 'Open Graph URL',
+        'type' => 'text',
     ],
 ]);
+
+$cacheConfig = array_merge(Configure::read('Croogo.Cache.defaultConfig'), ['groups' => ['seo_lite']]);
+Cache::setConfig('seo_lite', $cacheConfig);
 
 Croogo::hookHelper('*', 'Seolite.SeoLite');
 
@@ -30,29 +37,17 @@ if (strpos($queryString, 'admin') === false) {
  * stuff for /admin routes only
  */
 
-Croogo::hookBehavior('Croogo/Nodes.Nodes', 'Seolite.CustomFields', [
-    'priority' => 1,
-]);
+$title = 'SEO';
+$element = 'Croogo/Meta.admin/seo_tab';
+Croogo::hookAdminTab('Admin/Urls/add', $title, $element);
+Croogo::hookAdminTab('Admin/Urls/edit', $title, $element);
 
-$title = 'SeoLite';
-$element = 'Seolite.admin/meta';
-$options = [
-    'elementData' => [
-        'field' => 'body',
-    ],
-];
-Croogo::hookAdminTab('Admin/Nodes/add', $title, $element, $options);
-Croogo::hookAdminTab('Admin/Nodes/edit', $title, $element, $options);
-$options['elementData']['field'] = 'description';
-Croogo::hookAdminTab('Admin/SeoLiteUrls/add', $title, $element, $options);
-Croogo::hookAdminTab('Admin/SeoLiteUrls/edit', $title, $element, $options);
-
-Nav::add('sidebar', 'seo_lite', [
-    'title' => 'SeoLite',
+Nav::add('sidebar', 'content.children.urls', [
+    'title' => 'Seo',
     'url' => 'javascript:void(0)',
     'children' => [
         'urls' => [
-            'title' => __d('seo_lite', 'Meta by URL'),
+            'title' => __d('seo_lite', 'By URL'),
             'url' => [
                 'admin' => true,
                 'plugin' => 'Seolite',

@@ -2,16 +2,21 @@
 $this->assign('title', __d('croogo', 'URLs'));
 $this->extend('/Common/admin_edit');
 
-$this->Html->addCrumb(__d('croogo', 'URLs'), ['action' => 'index']);
+$this->Breadcrumbs->add(__d('croogo', 'Content'), [
+    'plugin' => 'Croogo/Nodes',
+    'controller' => 'Nodes',
+    'action' => 'index',
+]);
+$this->Breadcrumbs->add(__d('croogo', 'URLs'), ['action' => 'index']);
 
 if ($this->request->param('action') === 'edit') {
-    $this->Html->addCrumb($url->url);
-    $this->assign('title', 'Url: ' . $url->url);
+    $this->Breadcrumbs->add($entity->url);
+    $this->assign('title', 'Url: ' . $entity->url);
 } else {
-    $this->Html->addCrumb(__d('croogo', 'Add'));
+    $this->Breadcrumbs->add(__d('croogo', 'Add'));
 }
 
-$this->append('form-start', $this->Form->create($url, [
+$this->append('form-start', $this->Form->create($entity, [
     'class' => 'protected-form',
 ]));
 
