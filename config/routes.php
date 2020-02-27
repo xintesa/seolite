@@ -4,7 +4,7 @@ use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 
 Router::plugin('Seolite', ['path' => '/'], function (RouteBuilder $routeBuilder) {
-    $routeBuilder->prefix('admin', function (RouteBuilder $routeBuilder) {
+    $routeBuilder->prefix('Admin', function (RouteBuilder $routeBuilder) {
         $routeBuilder->setExtensions(['json']);
 
         $routeBuilder->connect('/seo-lite/analyze', ['controller' => 'Analyze', 'action' => 'index']);

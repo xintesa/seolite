@@ -9,8 +9,8 @@ class SeoLiteAnalyzer
     public function analyze($text)
     {
         $params = ['content' => $text];
-        $analyzer = new \colossal_mind_mb_keyword_gen($params);
-        $keywords = $analyzer->get_keywords();
+//        $analyzer = new \colossal_mind_mb_keyword_gen($params);
+//        $keywords = $analyzer->get_keywords();
 
         $para = trim(html_entity_decode($text, ENT_QUOTES, 'UTF-8'));
 

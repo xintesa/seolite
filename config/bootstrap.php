@@ -8,18 +8,22 @@ Croogo::mergeConfig('Meta.keys', [
     'og:title' => [
         'label' => 'Open Graph Title',
         'type' => 'text',
+        'help' => 'The title of your object as it should appear within the graph, e.g., "The Rock"',
     ],
     'og:type' => [
         'label' => 'Open Graph Type',
         'type' => 'text',
+        'help' => 'The type of your object, e.g., "video.movie"',
     ],
     'og:image' => [
         'label' => 'Open Graph Image',
         'type' => 'text',
+        'help' => 'An image URL which should represent your object within the graph',
     ],
     'og:url' => [
         'label' => 'Open Graph URL',
         'type' => 'text',
+        'help' => 'The canonical URL of your object that will be used as its permanent ID in the graph',
     ],
 ]);
 

@@ -2,12 +2,16 @@
 
 namespace Seolite\Controller\Admin;
 
+use Cake\Core\Configure;
 use Seolite\SeoLiteAnalyzer;
 
 class AnalyzeController extends AppController
 {
+    public $uses = false;
+
     public function index()
     {
+        Configure::write('debug', false);
         $table = $this->request->query('table');
         $id = $this->request->query('id');
         $field = $this->request->query('field');
