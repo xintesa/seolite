@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.5.8",
-        "croogo/croogo": "^4.0.4",
+        "croogo/croogo": "^4.0.4|dev-master",
         "dakota/multibyte-keyword-generator": "~1.7"
     },
     "autoload": {

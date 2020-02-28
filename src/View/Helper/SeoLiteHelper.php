@@ -14,6 +14,7 @@ class SeoLiteHelper extends Helper
 
     public $helpers = [
         'Croogo/Core.Croogo',
+        'Croogo/FileManager.FileManager',
         'Url',
     ];
 
@@ -104,11 +105,21 @@ class SeoLiteHelper extends Helper
                     ]);
                     break;
                 case 'og:image':
+                case 'og:video':
+                    $attachment = null;
                     if (isset($entity->linked_assets['FeaturedImage'][0])) {
                         $attachment = $entity->linked_assets['FeaturedImage'][0];
-                        $meta[$key] = $this->Url->build($attachment->path, [
-                            'fullBase' => true,
-                        ]);
+                        $mime = $this->FileManager->filename2mime($attachment->path);
+                        $type = substr($mime, 0, strpos($mime, '/'));
+                        if ($key === 'og:image' && $type === 'image') {
+                            $meta[$key] = $this->Url->build($attachment->path, [
+                                'fullBase' => true,
+                            ]);
+                        } elseif ($key === 'og:video' && $type === 'video') {
+                            $meta[$key] = $this->Url->build($attachment->path, [
+                                'fullBase' => true,
+                            ]);
+                        }
                     }
                     break;
                 default:

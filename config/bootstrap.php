@@ -20,6 +20,11 @@ Croogo::mergeConfig('Meta.keys', [
         'type' => 'text',
         'help' => 'An image URL which should represent your object within the graph',
     ],
+    'og:video' => [
+        'label' => 'Open Graph Video',
+        'type' => 'text',
+        'help' => 'A URL to a video file that complements this object.',
+    ],
     'og:url' => [
         'label' => 'Open Graph URL',
         'type' => 'text',
