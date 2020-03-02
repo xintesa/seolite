@@ -61,7 +61,7 @@ class SeoLiteHelper extends Helper
             // $this->addAnalyzeButton();
             return;
         }
-        $url = Router::normalize($this->request->url);
+        $url = Router::normalize($this->getView()->getRequest()->getPath());
         $urlTable = TableRegistry::get('Seolite.Urls');
         $data = $urlTable->find()
             ->select(['id', 'url'])
